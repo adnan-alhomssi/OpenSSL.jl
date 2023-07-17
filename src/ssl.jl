@@ -409,7 +409,7 @@ mutable struct SSLStream{T} <: IO
     peekbytes::Base.RefValue{Csize_t}
     closed::Bool
 
-    function SSLStream(ssl_context::SSLContext, io::T) where {T <: IO}
+    function SSLStream{T}(ssl_context::SSLContext, io::T) where {T <: IO}
         # Create a read and write BIOs.
         bio_read::BIO = BIO(io; finalize=false)
         bio_write::BIO = BIO(io; finalize=false)
